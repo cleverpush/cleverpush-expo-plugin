@@ -26,7 +26,6 @@ npm run example
 # Build for iOS
 npm run example:prebuild
 cd examples/CleverPushExpoExample && npx expo run:ios
-```
 
 # Build for Android
 npm run example:prebuild
