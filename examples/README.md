@@ -28,25 +28,26 @@ npm run example:prebuild
 cd examples/CleverPushExpoExample && npx expo run:ios
 ```
 
-### Configuration
+# Build for Android
+npm run example:prebuild
+cd examples/CleverPushExpoExample && npx expo run:android
+```
 
-The example app is pre-configured with:
-- Development mode enabled
-- iOS deployment target 12.0+
-- CleverPush React Native SDK integrated
+### Configuration
 
 To test with your own CleverPush channel:
 1. Get your Channel ID from CleverPush dashboard
 2. Update the initialization in `App.tsx`
-3. Configure your app bundle identifier if needed
+3. Configure your app bundle identifier if needed (iOS)
+4. Add Firebase dependencies and google-services.json (Android)
 
 ### Features Demonstrated
 
 - ✅ Subscribe/Unsubscribe
+- ✅ Android/iOS push notification entitlements
 - ✅ Custom attribute management
 - ✅ Tag management
 - ✅ Event tracking
 - ✅ Topics dialog
 - ✅ Real-time operation logging
-- ✅ iOS push notification entitlements
 - ✅ Background modes configuration 
