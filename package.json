@@ -1,0 +1,45 @@
+{
+  "name": "cleverpush-expo-plugin",
+  "version": "1.0.0",
+  "description": "The CleverPush Expo plugin allows you to use CleverPush without leaving the managed workflow.",
+  "main": "build/app.plugin.js",
+  "types": "build/app.plugin.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf build && tsc",
+    "lint": "eslint . --ext .ts",
+    "prepare": "yarn run build",
+    "example": "cd examples/CleverPushExpoExample && npm start",
+    "example:install": "cd examples/CleverPushExpoExample && npm install",
+    "example:prebuild": "cd examples/CleverPushExpoExample && npx expo prebuild --clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cleverpush/cleverpush-expo-plugin.git"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "cleverpush",
+    "push notifications",
+    "mobile"
+  ],
+  "author": "CleverPush",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cleverpush/cleverpush-expo-plugin/issues"
+  },
+  "homepage": "https://github.com/cleverpush/cleverpush-expo-plugin#readme",
+  "peerDependencies": {
+    "@expo/config-plugins": "^8.0.0",
+    "@expo/config-types": "^51.0.0",
+    "expo": "*"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "typescript": "~5.8.3"
+  }
+}
