@@ -16,13 +16,7 @@ const withCleverPush: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
     );
   }
 
-  if (config.ios?.bundleIdentifier && !props.devTeam) {
-    throw new Error(
-      'CleverPush plugin requires "devTeam" property for automatic NSE installation. ' +
-      'Please add your iOS development team ID to enable automatic NSE installation. ' +
-      'Example: { mode: "development", devTeam: "KWJDGZUQ72" }'
-    );
-  }
+
 
   config = withCleverPushIos(config, props);
   config = withCleverPushAndroid(config, props);
