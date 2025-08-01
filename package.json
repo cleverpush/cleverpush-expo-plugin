@@ -1,12 +1,12 @@
 {
   "name": "cleverpush-expo-plugin",
-  "version": "1.0.0",
-  "description": "The CleverPush Expo plugin allows you to use CleverPush without leaving the managed workflow.",
+  "version": "0.0.1",
+  "description": "Expo config plugin for CleverPush push notifications with automatic NSE setup and rich notification support.",
   "main": "build/app.plugin.js",
   "types": "build/app.plugin.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf build && tsc",
+    "build": "rm -rf build && tsc && cp -r support/serviceExtensionFiles build/support/",
     "lint": "eslint . --ext .ts",
     "prepare": "yarn run build",
     "example": "cd examples/CleverPushExpoExample && npm start",
@@ -20,9 +20,15 @@
   "keywords": [
     "react-native",
     "expo",
+    "expo-plugin",
     "cleverpush",
-    "push notifications",
-    "mobile"
+    "push-notifications",
+    "mobile",
+    "ios",
+    "android",
+    "notification-service-extension",
+    "nse",
+    "rich-notifications"
   ],
   "author": "CleverPush",
   "license": "MIT",

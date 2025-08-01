@@ -7,22 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A8D27A4D9F3479315088F1A /* libPods-CleverPushExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3411D1D68D3932539AFB995 /* libPods-CleverPushExample.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2C7F3EF2CF284766ADB7EA19 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E597C8782436F920A990A /* NotificationService.m */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6AA22691B770B54C7ABB342F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8CA12D63A4AC222CA3A3FF24 /* PrivacyInfo.xcprivacy */; };
+		673EBAFACB538B28F9A4A459 /* libPods-CleverPushExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF1C6D28597EF7B95E41A0E /* libPods-CleverPushExample.a */; };
+		A7BCB17FC1C544F6A508019D /* CE409FF73EF444D2991B9850 in Frameworks */ = {isa = PBXBuildFile; fileRef = C967B82DCD894A3F80F42310 /* CE409FF73EF444D2991B9850 */; };
+		B3BE5DEB5E7DFDDAEE29D15B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33354C79D6440598DD463821 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DDCFCF9BA0A79D271594D5E5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF5C5673E0549D288259A218 /* ExpoModulesProvider.swift */; };
+		DC823B1D6E6CBCE6D9C1714F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 43383A49EAAD464C545310E6 /* PrivacyInfo.xcprivacy */; };
+		DF56C3EA8690E8A8B392DB35 /* libPods-CleverPushNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1EC8F6CF8A95811185DB3D /* libPods-CleverPushNotificationServiceExtension.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
+		FFBF5E02638441368573A4A4 /* CleverPushNotificationServiceExtension.appex in Copy Files */ = {isa = PBXBuildFile; fileRef = CE409FF73EF444D2991B9850 /* CleverPushNotificationServiceExtension.appex */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A68C4E57E82E4E268B2F9486 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E62479ABCAD4ED4ACD26221;
+			remoteInfo = CleverPushNotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		191A817DAD3E418F9F82F0BA /* Copy Files */ = {
+		F2F340CC37C746E78E0B5D9F /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				FFBF5E02638441368573A4A4 /* CleverPushNotificationServiceExtension.appex in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -30,20 +45,28 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		12BE1146DA543640578CFB01 /* Pods-CleverPushExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushExample.release.xcconfig"; path = "Target Support Files/Pods-CleverPushExample/Pods-CleverPushExample.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* CleverPushExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleverPushExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CleverPushExample/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CleverPushExample/Info.plist; sourceTree = "<group>"; };
-		19AD976AC61D7F6555056A3C /* Pods-CleverPushExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushExample.debug.xcconfig"; path = "Target Support Files/Pods-CleverPushExample/Pods-CleverPushExample.debug.xcconfig"; sourceTree = "<group>"; };
-		8CA12D63A4AC222CA3A3FF24 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = CleverPushExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		8D4EA0D9FC0D72C57EF7C56D /* Pods-CleverPushExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushExample.release.xcconfig"; path = "Target Support Files/Pods-CleverPushExample/Pods-CleverPushExample.release.xcconfig"; sourceTree = "<group>"; };
+		16E3A88A76B5E041F5A10783 /* Pods-CleverPushNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-CleverPushNotificationServiceExtension/Pods-CleverPushNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		2254E04A1C7B1B046869B171 /* Pods-CleverPushNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-CleverPushNotificationServiceExtension/Pods-CleverPushNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		33354C79D6440598DD463821 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CleverPushExample/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		3BF1C6D28597EF7B95E41A0E /* libPods-CleverPushExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CleverPushExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43383A49EAAD464C545310E6 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = CleverPushExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		9E1EC8F6CF8A95811185DB3D /* libPods-CleverPushNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CleverPushNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5CAF28CC0704FA69594FDCE /* CleverPushNotificationServiceExtension-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "CleverPushNotificationServiceExtension-Info.plist"; path = "CleverPushNotificationServiceExtension-Info.plist"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = CleverPushExample/SplashScreen.storyboard; sourceTree = "<group>"; };
-		AF5C5673E0549D288259A218 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-CleverPushExample/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		B55E597C8782436F920A990A /* NotificationService.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = NotificationService.m; path = NotificationService.m; sourceTree = "<group>"; };
+		BAE57E54FE9F493A9E97277E /* CleverPushNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = CleverPushNotificationServiceExtension.entitlements; path = CleverPushNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BC1F849E2E3B6BBD00D631B6 /* CleverPush.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = CleverPush.xcframework; path = Pods/CleverPush/Frameworks/CleverPush.xcframework; sourceTree = "<group>"; };
+		C6A190102C3646340D8FF0B5 /* Pods-CleverPushExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CleverPushExample.debug.xcconfig"; path = "Target Support Files/Pods-CleverPushExample/Pods-CleverPushExample.debug.xcconfig"; sourceTree = "<group>"; };
+		C967B82DCD894A3F80F42310 /* CE409FF73EF444D2991B9850 */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = CE409FF73EF444D2991B9850; path = CE409FF73EF444D2991B9850; sourceTree = "<group>"; };
+		CB507B5EB6554828812FDE29 /* NotificationService.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = NotificationService.h; path = NotificationService.h; sourceTree = "<group>"; };
+		CE409FF73EF444D2991B9850 /* CleverPushNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = undefined; name = CleverPushNotificationServiceExtension.appex; path = CleverPushNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = CleverPushExample/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* CleverPushExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CleverPushExample-Bridging-Header.h"; path = "CleverPushExample/CleverPushExample-Bridging-Header.h"; sourceTree = "<group>"; };
-		F3411D1D68D3932539AFB995 /* libPods-CleverPushExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CleverPushExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +74,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8D27A4D9F3479315088F1A /* libPods-CleverPushExample.a in Frameworks */,
+				673EBAFACB538B28F9A4A459 /* libPods-CleverPushExample.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A911E77AB4C441EFA9D86343 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7BCB17FC1C544F6A508019D /* CE409FF73EF444D2991B9850 in Frameworks */,
+				DF56C3EA8690E8A8B392DB35 /* libPods-CleverPushNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +99,15 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				8CA12D63A4AC222CA3A3FF24 /* PrivacyInfo.xcprivacy */,
+				43383A49EAAD464C545310E6 /* PrivacyInfo.xcprivacy */,
+			);
+			name = CleverPushExample;
+			sourceTree = "<group>";
+		};
+		1A9901BA6D8EF731DB3E5724 /* CleverPushExample */ = {
+			isa = PBXGroup;
+			children = (
+				33354C79D6440598DD463821 /* ExpoModulesProvider.swift */,
 			);
 			name = CleverPushExample;
 			sourceTree = "<group>";
@@ -75,28 +115,24 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BC1F849E2E3B6BBD00D631B6 /* CleverPush.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F3411D1D68D3932539AFB995 /* libPods-CleverPushExample.a */,
+				C967B82DCD894A3F80F42310 /* CE409FF73EF444D2991B9850 */,
+				3BF1C6D28597EF7B95E41A0E /* libPods-CleverPushExample.a */,
+				9E1EC8F6CF8A95811185DB3D /* libPods-CleverPushNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2DF074E2EA9EC85BD805BE5C /* CleverPushExample */ = {
+		31A17A75976346189E0B8071 /* CleverPushNotificationServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
-				AF5C5673E0549D288259A218 /* ExpoModulesProvider.swift */,
+				CB507B5EB6554828812FDE29 /* NotificationService.h */,
+				BAE57E54FE9F493A9E97277E /* CleverPushNotificationServiceExtension.entitlements */,
+				A5CAF28CC0704FA69594FDCE /* CleverPushNotificationServiceExtension-Info.plist */,
+				B55E597C8782436F920A990A /* NotificationService.m */,
 			);
-			name = CleverPushExample;
-			sourceTree = "<group>";
-		};
-		7469A1B72AEDC8368D53787E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				19AD976AC61D7F6555056A3C /* Pods-CleverPushExample.debug.xcconfig */,
-				8D4EA0D9FC0D72C57EF7C56D /* Pods-CleverPushExample.release.xcconfig */,
-			);
-			path = Pods;
+			name = CleverPushNotificationServiceExtension;
+			path = CleverPushNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -113,8 +149,9 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				7469A1B72AEDC8368D53787E /* Pods */,
-				F285DBAA7A9C49DB342ABA00 /* ExpoModulesProviders */,
+				31A17A75976346189E0B8071 /* CleverPushNotificationServiceExtension */,
+				AADC5B9ED9C656B30D800660 /* Pods */,
+				C6F0D72EDACF8D61ABC34149 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -125,8 +162,21 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* CleverPushExample.app */,
+				CE409FF73EF444D2991B9850 /* CleverPushNotificationServiceExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AADC5B9ED9C656B30D800660 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C6A190102C3646340D8FF0B5 /* Pods-CleverPushExample.debug.xcconfig */,
+				12BE1146DA543640578CFB01 /* Pods-CleverPushExample.release.xcconfig */,
+				2254E04A1C7B1B046869B171 /* Pods-CleverPushNotificationServiceExtension.debug.xcconfig */,
+				16E3A88A76B5E041F5A10783 /* Pods-CleverPushNotificationServiceExtension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -138,10 +188,10 @@
 			path = CleverPushExample/Supporting;
 			sourceTree = "<group>";
 		};
-		F285DBAA7A9C49DB342ABA00 /* ExpoModulesProviders */ = {
+		C6F0D72EDACF8D61ABC34149 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				2DF074E2EA9EC85BD805BE5C /* CleverPushExample */,
+				1A9901BA6D8EF731DB3E5724 /* CleverPushExample */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -154,23 +204,43 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "CleverPushExample" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				16F20DA5FB7C7A6359DDCCBA /* [Expo] Configure project */,
+				8E3E56A4F8832307B517ADC9 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				191A817DAD3E418F9F82F0BA /* Copy Files */,
-				5A25B9E5083B3914D9F47ADE /* [CP] Embed Pods Frameworks */,
+				F2F340CC37C746E78E0B5D9F /* Copy Files */,
+				1F256524F5A23470E5486622 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				490AAED066AF41C682F9FFD7 /* PBXTargetDependency */,
 			);
 			name = CleverPushExample;
 			productName = CleverPushExample;
 			productReference = 13B07F961A680F5B00A75B9A /* CleverPushExample.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2E62479ABCAD4ED4ACD26221 /* CleverPushNotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E29C853A3F34C8586915196 /* Build configuration list for PBXNativeTarget "CleverPushNotificationServiceExtension" */;
+			buildPhases = (
+				B0BC42DF2D9AF622A5DFCF7E /* [CP] Check Pods Manifest.lock */,
+				0DAA31CF278F471292B48E64 /* Sources */,
+				6625101091DC48A6BAF3897E /* Resources */,
+				A911E77AB4C441EFA9D86343 /* Frameworks */,
+				8E57913B8FA97FB89EE15E43 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CleverPushNotificationServiceExtension;
+			productName = CleverPushNotificationServiceExtension;
+			productReference = CE409FF73EF444D2991B9850 /* CleverPushNotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -183,6 +253,9 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KWJDGZUQ72;
 						LastSwiftMigration = 1250;
+					};
+					2E62479ABCAD4ED4ACD26221 = {
+						DevelopmentTeam = KWJDGZUQ72;
 					};
 				};
 			};
@@ -200,6 +273,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* CleverPushExample */,
+				2E62479ABCAD4ED4ACD26221 /* CleverPushNotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -212,7 +286,14 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				6AA22691B770B54C7ABB342F /* PrivacyInfo.xcprivacy in Resources */,
+				DC823B1D6E6CBCE6D9C1714F /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6625101091DC48A6BAF3897E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,26 +337,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		16F20DA5FB7C7A6359DDCCBA /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CleverPushExample/expo-configure-project.sh\"\n";
-		};
-		5A25B9E5083B3914D9F47ADE /* [CP] Embed Pods Frameworks */ = {
+		1F256524F5A23470E5486622 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -333,24 +395,99 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CleverPushExample/Pods-CleverPushExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8E3E56A4F8832307B517ADC9 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-CleverPushExample/expo-configure-project.sh\"\n";
+		};
+		8E57913B8FA97FB89EE15E43 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CleverPushNotificationServiceExtension/Pods-CleverPushNotificationServiceExtension-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/CleverPush/CleverPushResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CleverPushResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CleverPushNotificationServiceExtension/Pods-CleverPushNotificationServiceExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0BC42DF2D9AF622A5DFCF7E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CleverPushNotificationServiceExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0DAA31CF278F471292B48E64 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C7F3EF2CF284766ADB7EA19 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				DDCFCF9BA0A79D271594D5E5 /* ExpoModulesProvider.swift in Sources */,
+				B3BE5DEB5E7DFDDAEE29D15B /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		490AAED066AF41C682F9FFD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E62479ABCAD4ED4ACD26221 /* CleverPushNotificationServiceExtension */;
+			targetProxy = A68C4E57E82E4E268B2F9486 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19AD976AC61D7F6555056A3C /* Pods-CleverPushExample.debug.xcconfig */;
+			baseConfigurationReference = C6A190102C3646340D8FF0B5 /* Pods-CleverPushExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -386,7 +523,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D4EA0D9FC0D72C57EF7C56D /* Pods-CleverPushExample.release.xcconfig */;
+			baseConfigurationReference = 12BE1146DA543640578CFB01 /* Pods-CleverPushExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -411,6 +548,28 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		3F80C5E3D01A44838838DA1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16E3A88A76B5E041F5A10783 /* Pods-CleverPushNotificationServiceExtension.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KWJDGZUQ72;
+				INFOPLIST_FILE = "CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleverpush.example.CleverPushNotificationServiceExtension;
+				PRODUCT_NAME = CleverPushNotificationServiceExtension;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -469,7 +628,10 @@
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -524,13 +686,42 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SDKROOT)/usr/lib/swift\"$(inherited)\"";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "$(inherited)  ";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+		};
+		E415299B34D74C53A4C4A3C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2254E04A1C7B1B046869B171 /* Pods-CleverPushNotificationServiceExtension.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KWJDGZUQ72;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CleverPushNotificationServiceExtension/CleverPushNotificationServiceExtension-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cleverpush.example.CleverPushNotificationServiceExtension;
+				PRODUCT_NAME = CleverPushNotificationServiceExtension;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -549,6 +740,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E29C853A3F34C8586915196 /* Build configuration list for PBXNativeTarget "CleverPushNotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E415299B34D74C53A4C4A3C6 /* Debug */,
+				3F80C5E3D01A44838838DA1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

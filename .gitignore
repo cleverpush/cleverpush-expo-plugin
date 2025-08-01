@@ -11,4 +11,5 @@ node_modules
 examples/CleverPushExpoExample/ios/CleverPush.xcodeproj/xcuserdata
 examples/CleverPushExpoExample/ios/CleverPush.xcodeproj/project.xcworkspace/xcuserdata
 examples/CleverPushExpoExample/node_modules
+build
 
