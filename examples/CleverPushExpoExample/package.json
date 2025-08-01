@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "cleverpush-expo-plugin": "file:../..",
-    "cleverpush-react-native": "^1.7.17",
+    "cleverpush-react-native": "^1.7.19",
     "expo": "~53.0.20",
     "expo-dev-client": "~5.2.4",
     "expo-status-bar": "~2.2.3",
