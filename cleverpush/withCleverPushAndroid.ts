@@ -1,8 +1,9 @@
 import { ConfigPlugin, withDangerousMod, withStringsXml } from '@expo/config-plugins';
+import { ExpoConfig } from '@expo/config-types';
 import { generateImageAsync } from '@expo/image-utils';
 import { CleverPushPluginProps } from '../types/types';
 import { resolve } from 'path';
-import { existsSync, mkdirSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 const RESOURCE_ROOT_PATH = 'android/app/src/main/res/';
 
@@ -15,8 +16,8 @@ const SMALL_ICON_DIRS_TO_SIZE: { [name: string]: number } = {
 };
 
 const withNotificationIcons: ConfigPlugin<CleverPushPluginProps> = (
-  config,
-  cleverpushProps
+  config: ExpoConfig,
+  cleverpushProps: CleverPushPluginProps
 ) => {
   if (!cleverpushProps.smallIcons && !config.notification?.icon) {
     return config;
@@ -24,7 +25,7 @@ const withNotificationIcons: ConfigPlugin<CleverPushPluginProps> = (
 
   return withDangerousMod(config, [
     'android',
-    async (config) => {
+    async (config: any) => {
       if (config.notification?.icon) {
         await saveIconAsync(config.notification.icon, config.modRequest.projectRoot, SMALL_ICON_DIRS_TO_SIZE);
       }
@@ -39,14 +40,14 @@ const withNotificationIcons: ConfigPlugin<CleverPushPluginProps> = (
 };
 
 const withNotificationColor: ConfigPlugin<CleverPushPluginProps> = (
-  config,
-  cleverpushProps
+  config: ExpoConfig,
+  cleverpushProps: CleverPushPluginProps
 ) => {
   if (!cleverpushProps.smallIconAccentColor) {
     return config;
   }
 
-  return withStringsXml(config, (config) => {
+  return withStringsXml(config, (config: any) => {
     const strings = config.modResults;
     
     const stringEntry = {
@@ -95,7 +96,7 @@ async function saveIconsArrayAsync(
 
           const iconOutputPath = resolve(dpiFolderPath, 'cleverpush_notification_icon.png');
           
-          await generateImageAsync(
+          const { source } = await generateImageAsync(
             { projectRoot, cacheType: 'cleverpush-icon' },
             {
               src: iconPath,
@@ -105,6 +106,8 @@ async function saveIconsArrayAsync(
               backgroundColor: 'transparent',
             }
           );
+          
+          writeFileSync(iconOutputPath, source);
         })
       );
     })
@@ -112,8 +115,8 @@ async function saveIconsArrayAsync(
 }
 
 export const withCleverPushAndroid: ConfigPlugin<CleverPushPluginProps> = (
-  config,
-  props
+  config: ExpoConfig,
+  props: CleverPushPluginProps
 ) => {
   config = withNotificationIcons(config, props);
   

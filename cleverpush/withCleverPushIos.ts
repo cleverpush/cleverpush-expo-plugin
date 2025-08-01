@@ -1,4 +1,5 @@
 import { ConfigPlugin, withEntitlementsPlist, withInfoPlist, withXcodeProject, withDangerousMod } from "@expo/config-plugins";
+import { ExpoConfig } from '@expo/config-types';
 import * as fs from 'fs';
 import * as path from 'path';
 import { CleverPushPluginProps } from "../types/types";
@@ -19,10 +20,10 @@ import { updatePodfile } from "../support/updatePodfile";
 import assert from 'assert';
 
 const withAppEnvironment: ConfigPlugin<CleverPushPluginProps> = (
-  config,
-  cleverpushProps
+  config: ExpoConfig,
+  cleverpushProps: CleverPushPluginProps
 ) => {
-  return withEntitlementsPlist(config, (newConfig) => {
+  return withEntitlementsPlist(config, (newConfig: any) => {
     if (cleverpushProps?.mode == null) {
       throw new Error(`
         Missing required "mode" key in your app.json or app.config.js file for "cleverpush-expo-plugin".
@@ -41,10 +42,10 @@ const withAppEnvironment: ConfigPlugin<CleverPushPluginProps> = (
 };
 
 const withRemoteNotificationsPermissions: ConfigPlugin<CleverPushPluginProps> = (
-  config
+  config: ExpoConfig
 ) => {
   const BACKGROUND_MODE_KEYS = ["remote-notification"];
-  return withInfoPlist(config, (newConfig) => {
+  return withInfoPlist(config, (newConfig: any) => {
     if (!Array.isArray(newConfig.modResults.UIBackgroundModes)) {
       newConfig.modResults.UIBackgroundModes = [];
     }
@@ -59,10 +60,10 @@ const withRemoteNotificationsPermissions: ConfigPlugin<CleverPushPluginProps> = 
 };
 
 const withAppGroupPermissions: ConfigPlugin<CleverPushPluginProps> = (
-  config
+  config: ExpoConfig
 ) => {
   const APP_GROUP_KEY = "com.apple.security.application-groups";
-  return withEntitlementsPlist(config, newConfig => {
+  return withEntitlementsPlist(config, (newConfig: any) => {
     if (!newConfig.modResults) {
       newConfig.modResults = {};
     }
@@ -81,10 +82,10 @@ const withAppGroupPermissions: ConfigPlugin<CleverPushPluginProps> = (
   });
 };
 
-const withCleverPushPodfile: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
+const withCleverPushPodfile: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
   return withDangerousMod(config, [
     'ios',
-    async config => {
+    async (config: any) => {
       try {
         CleverPushLog.log(`[CleverPush] Starting Podfile update process`);
         const iosRoot = path.join(config.modRequest.projectRoot, "ios");
@@ -97,7 +98,7 @@ const withCleverPushPodfile: ConfigPlugin<CleverPushPluginProps> = (config, prop
   ]);
 };
 
-const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
+const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
   let pluginDir: string;
   try {
     pluginDir = require.resolve("cleverpush-expo-plugin/package.json");
@@ -108,7 +109,7 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) =
 
   return withDangerousMod(config, [
     'ios',
-    async config => {
+    async (config: any) => {
       try {
         CleverPushLog.log(`[CleverPush] Starting NSE setup process`);
         const iosPath = path.join(config.modRequest.projectRoot, "ios");
@@ -147,8 +148,8 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) =
   ]);
 };
 
-const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
-  return withXcodeProject(config, newConfig => {
+const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
+  return withXcodeProject(config, (newConfig: any) => {
     try {
       CleverPushLog.log(`[CleverPush] Starting Xcode project configuration`);
       const xcodeProject = newConfig.modResults;
@@ -248,8 +249,8 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
 };
 
 export const withCleverPushIos: ConfigPlugin<CleverPushPluginProps> = (
-  config,
-  props
+  config: ExpoConfig,
+  props: CleverPushPluginProps
 ) => {
   assert(config.ios?.bundleIdentifier, "Missing 'ios.bundleIdentifier' in app config.");
 

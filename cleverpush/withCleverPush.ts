@@ -1,9 +1,10 @@
 import { ConfigPlugin } from '@expo/config-plugins';
+import { ExpoConfig } from '@expo/config-types';
 import { CleverPushPluginProps } from '../types/types';
 import { withCleverPushAndroid } from './withCleverPushAndroid';
 import { withCleverPushIos } from './withCleverPushIos';
 
-const withCleverPush: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
+const withCleverPush: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
   if (!props) {
     throw new Error(
       'You are trying to use the CleverPush plugin without any props. Property "mode" is required. Please see https://github.com/cleverpush/cleverpush-expo-plugin for more info.'
