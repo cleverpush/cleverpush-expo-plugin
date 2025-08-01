@@ -1,16 +1,10 @@
 export type CleverPushPluginProps = {
   mode: Mode;
-  
   smallIcons?: string[];
-  
   smallIconAccentColor?: string;
-  
   devTeam?: string;
-  
   iPhoneDeploymentTarget?: string;
-  
   iosNSEFilePath?: string;
-
 };
 
 export type Mode = "development" | "production";

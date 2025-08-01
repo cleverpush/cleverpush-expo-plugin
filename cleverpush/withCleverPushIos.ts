@@ -98,12 +98,10 @@ const withCleverPushPodfile: ConfigPlugin<CleverPushPluginProps> = (config, prop
 };
 
 const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
-  // Support for monorepos where node_modules can be above the project directory
   let pluginDir: string;
   try {
     pluginDir = require.resolve("cleverpush-expo-plugin/package.json");
   } catch (error) {
-    // Fallback to relative path for development
     pluginDir = path.join(__dirname, "../../package.json");
   }
   const sourceDir = path.join(path.dirname(pluginDir), "build/support/serviceExtensionFiles/");
@@ -115,11 +113,9 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) =
         CleverPushLog.log(`[CleverPush] Starting NSE setup process`);
         const iosPath = path.join(config.modRequest.projectRoot, "ios");
 
-        /* COPY OVER EXTENSION FILES */
         CleverPushLog.log(`[CleverPush] Creating NSE directory: ${iosPath}/${NSE_TARGET_NAME}`);
         fs.mkdirSync(`${iosPath}/${NSE_TARGET_NAME}`, { recursive: true });
 
-        // Copy NSE extension files
         for (let i = 0; i < NSE_EXT_FILES.length; i++) {
           const extFile = NSE_EXT_FILES[i];
           const sourcePath = `${sourceDir}${extFile}`;
@@ -129,14 +125,11 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config, props) =
           await FileManager.copyFile(sourcePath, targetFile);
         }
 
-        // Copy NSE source file either from configuration-provided location, falling back to the default one
         const sourcePath = props.iosNSEFilePath ?? `${sourceDir}${NSE_SOURCE_FILE}`;
         const targetFile = `${iosPath}/${NSE_TARGET_NAME}/${NSE_SOURCE_FILE}`;
         
         CleverPushLog.log(`[CleverPush] Copying NSE source file: ${NSE_SOURCE_FILE}`);
         await FileManager.copyFile(sourcePath, targetFile);
-
-        /* MODIFY COPIED EXTENSION FILES */
         CleverPushLog.log(`[CleverPush] Updating NSE configuration files`);
         const nseUpdater = new CleverPushNseUpdaterManager(iosPath);
         await nseUpdater.updateNSEEntitlements(`group.${config.ios?.bundleIdentifier}.cleverpush`);
@@ -167,11 +160,8 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
 
       CleverPushLog.log(`[CleverPush] Creating NSE target and group`);
 
-      // Create new PBXGroup for the extension
       const extGroup = xcodeProject.addPbxGroup([...NSE_EXT_FILES, NSE_SOURCE_FILE], NSE_TARGET_NAME, NSE_TARGET_NAME);
 
-      // Add the new PBXGroup to the top level group. This makes the
-      // files / folder appear in the file explorer in Xcode.
       const groups = xcodeProject.hash.project.objects["PBXGroup"];
       Object.keys(groups).forEach(function(key) {
         if (typeof groups[key] === "object" && groups[key].name === undefined && groups[key].path === undefined) {
@@ -179,20 +169,11 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
         }
       });
 
-      // WORK AROUND for codeProject.addTarget BUG
-      // Xcode projects don't contain these if there is only one target
-      // An upstream fix should be made to the code referenced in this link:
-      //   - https://github.com/apache/cordova-node-xcode/blob/8b98cabc5978359db88dc9ff2d4c015cba40f150/lib/pbxProject.js#L860
       const projObjects = xcodeProject.hash.project.objects;
       projObjects['PBXTargetDependency'] = projObjects['PBXTargetDependency'] || {};
       projObjects['PBXContainerItemProxy'] = projObjects['PBXTargetDependency'] || {};
-
-      // Add the NSE target
-      // This adds PBXTargetDependency and PBXContainerItemProxy for you
       CleverPushLog.log(`[CleverPush] Adding NSE target to Xcode project`);
       const nseTarget = xcodeProject.addTarget(NSE_TARGET_NAME, "app_extension", NSE_TARGET_NAME, `${config.ios?.bundleIdentifier}.${NSE_TARGET_NAME}`);
-
-      // Add build phases to the new target
       xcodeProject.addBuildPhase(
         ["NotificationService.m"],
         "PBXSourcesBuildPhase",
@@ -208,14 +189,11 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
         nseTarget.uuid
       );
 
-      // Add CleverPush.xcframework to NSE target
       CleverPushLog.log(`[CleverPush] Adding CleverPush.xcframework to NSE target`);
       try {
-        // Find the main app target to get CleverPush framework reference
         const mainAppTarget = xcodeProject.getFirstTarget();
         const frameworks = xcodeProject.hash.project.objects.PBXBuildFile || {};
         
-        // Look for existing CleverPush framework reference
         let cleverPushFrameworkFileRef = null;
         Object.keys(frameworks).forEach(key => {
           const framework = frameworks[key];
@@ -228,7 +206,6 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
         });
 
         if (cleverPushFrameworkFileRef) {
-          // Add the framework to NSE target
           const frameworkBuildFile = xcodeProject.addFramework(cleverPushFrameworkFileRef, { target: nseTarget.uuid });
           CleverPushLog.log(`[CleverPush] Successfully added CleverPush framework to NSE target`);
         } else {
@@ -239,8 +216,7 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
         CleverPushLog.log(`[CleverPush] Framework linking handled via Podfile: ${frameworkError}`);
       }
 
-      // Edit the Deployment info of the new Target, only IphoneOS and Targeted Device Family
-      // However, can be more
+
       CleverPushLog.log(`[CleverPush] Configuring NSE target build settings`);
       const configurations = xcodeProject.pbxXCBuildConfigurationSection();
       for (const key in configurations) {
@@ -257,7 +233,7 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
         }
       }
 
-      // Add development teams to both your target and the original project
+
       xcodeProject.addTargetAttribute("DevelopmentTeam", props?.devTeam, nseTarget);
       xcodeProject.addTargetAttribute("DevelopmentTeam", props?.devTeam);
       
@@ -270,8 +246,6 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config,
     return newConfig;
   });
 };
-
-
 
 export const withCleverPushIos: ConfigPlugin<CleverPushPluginProps> = (
   config,

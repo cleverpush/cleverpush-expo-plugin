@@ -16,8 +16,6 @@ const withCleverPush: ConfigPlugin<CleverPushPluginProps> = (config, props) => {
     );
   }
 
-
-
   config = withCleverPushIos(config, props);
   config = withCleverPushAndroid(config, props);
 

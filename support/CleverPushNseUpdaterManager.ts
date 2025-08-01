@@ -7,7 +7,6 @@ import {
   NSE_TARGET_NAME
 } from './iosConstants';
 
-// project `ios/CleverPushNotificationServiceExtension` directory
 const entitlementsFileName = `CleverPushNotificationServiceExtension.entitlements`;
 const plistFileName = `CleverPushNotificationServiceExtension-Info.plist`;
 

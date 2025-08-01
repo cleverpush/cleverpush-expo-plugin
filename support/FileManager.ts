@@ -9,7 +9,6 @@ export class FileManager {
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
-
       fs.copyFileSync(sourcePath, targetPath);
       CleverPushLog.log(`Copied ${sourcePath} to ${targetPath}`);
     } catch (error) {
@@ -42,7 +41,6 @@ export class FileManager {
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
-
       fs.writeFileSync(filePath, content, 'utf8');
       CleverPushLog.log(`Wrote file: ${filePath}`);
     } catch (error) {
