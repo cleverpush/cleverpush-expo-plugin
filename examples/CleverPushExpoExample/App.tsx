@@ -13,7 +13,7 @@ const App = () => {
     CleverPush.enableDevelopmentMode();
     CleverPush.setShowNotificationsInForeground(true);
 
-    CleverPush.init('CLEVERPUSH_CHANNEL_ID');
+    CleverPush.init('RHe2nXvQk9SZgdC4x');
 
     checkNotificationPermission();
     isSubscribed();

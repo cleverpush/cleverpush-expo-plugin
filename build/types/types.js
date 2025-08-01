@@ -6,5 +6,6 @@ exports.CLEVERPUSH_PLUGIN_PROPS = [
     "smallIcons",
     "smallIconAccentColor",
     "devTeam",
-    "iPhoneDeploymentTarget"
+    "iPhoneDeploymentTarget",
+    "iosNSEFilePath"
 ];

@@ -9,6 +9,7 @@ export type CleverPushPluginProps = {
   
   iPhoneDeploymentTarget?: string;
   
+  iosNSEFilePath?: string;
 
 };
 
@@ -19,5 +20,6 @@ export const CLEVERPUSH_PLUGIN_PROPS = [
   "smallIcons", 
   "smallIconAccentColor",
   "devTeam",
-  "iPhoneDeploymentTarget"
+  "iPhoneDeploymentTarget",
+  "iosNSEFilePath"
 ]; 

@@ -58,5 +58,30 @@ class FileManager {
             CleverPushLog_1.CleverPushLog.log(`Created directory: ${dirPath}`);
         }
     }
+    static async readFile(filePath) {
+        try {
+            const content = fs.readFileSync(filePath, 'utf8');
+            CleverPushLog_1.CleverPushLog.log(`Read file: ${filePath}`);
+            return content;
+        }
+        catch (error) {
+            CleverPushLog_1.CleverPushLog.error(`Failed to read file ${filePath}:`, error);
+            throw error;
+        }
+    }
+    static async writeFile(filePath, content) {
+        try {
+            const targetDir = path.dirname(filePath);
+            if (!fs.existsSync(targetDir)) {
+                fs.mkdirSync(targetDir, { recursive: true });
+            }
+            fs.writeFileSync(filePath, content, 'utf8');
+            CleverPushLog_1.CleverPushLog.log(`Wrote file: ${filePath}`);
+        }
+        catch (error) {
+            CleverPushLog_1.CleverPushLog.error(`Failed to write file ${filePath}:`, error);
+            throw error;
+        }
+    }
 }
 exports.FileManager = FileManager;

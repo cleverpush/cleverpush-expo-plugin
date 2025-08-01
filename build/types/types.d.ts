@@ -4,6 +4,7 @@ export type CleverPushPluginProps = {
     smallIconAccentColor?: string;
     devTeam?: string;
     iPhoneDeploymentTarget?: string;
+    iosNSEFilePath?: string;
 };
 export type Mode = "development" | "production";
 export declare const CLEVERPUSH_PLUGIN_PROPS: string[];

@@ -62,3 +62,8 @@ target 'CleverPushExample' do
     end
   end
 end
+
+target 'CleverPushNotificationServiceExtension' do
+  pod 'CleverPush'
+  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
+end
