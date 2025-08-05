@@ -1,4 +1,4 @@
-import { ConfigPlugin, withDangerousMod, withStringsXml } from '@expo/config-plugins';
+import { ConfigPlugin, withDangerousMod, withAppBuildGradle, withProjectBuildGradle } from '@expo/config-plugins';
 import { ExpoConfig } from '@expo/config-types';
 import { generateImageAsync } from '@expo/image-utils';
 import { CleverPushPluginProps } from '../types/types';
@@ -6,6 +6,63 @@ import { resolve } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 const RESOURCE_ROOT_PATH = 'android/app/src/main/res/';
+
+const GOOGLE_SERVICES_CLASSPATH = "classpath(\"com.google.gms:google-services:4.3.3\")";
+const GOOGLE_SERVICES_PLUGIN = "apply plugin: 'com.google.gms.google-services'";
+const GOOGLE_SERVICES_CONFIG = "googleServices { disableVersionCheck = true }";
+
+const addGoogleServicesClasspathToRootBuildGradle: ConfigPlugin = (config) => {
+  return withProjectBuildGradle(config, (config) => {
+    if (!config.modResults.contents.includes(GOOGLE_SERVICES_CLASSPATH)) {
+      // Find the dependencies block and add the classpath
+      const dependenciesIndex = config.modResults.contents.indexOf('dependencies {');
+      if (dependenciesIndex !== -1) {
+        const beforeDependencies = config.modResults.contents.substring(0, dependenciesIndex);
+        const afterDependencies = config.modResults.contents.substring(dependenciesIndex);
+        
+        // Find the closing brace of dependencies block
+        let braceCount = 0;
+        let endIndex = -1;
+        for (let i = 0; i < afterDependencies.length; i++) {
+          if (afterDependencies[i] === '{') braceCount++;
+          if (afterDependencies[i] === '}') {
+            braceCount--;
+            if (braceCount === 0) {
+              endIndex = i;
+              break;
+            }
+          }
+        }
+        
+        if (endIndex !== -1) {
+          const dependenciesContent = afterDependencies.substring(0, endIndex);
+          const afterDependenciesBlock = afterDependencies.substring(endIndex);
+          
+          // Add the classpath before the closing brace
+          const updatedDependencies = dependenciesContent + `    ${GOOGLE_SERVICES_CLASSPATH}\n`;
+          config.modResults.contents = beforeDependencies + updatedDependencies + afterDependenciesBlock;
+        }
+      }
+    }
+    return config;
+  });
+};
+
+const addGoogleServicesPluginToAppBuildGradle: ConfigPlugin = (config) => {
+  return withAppBuildGradle(config, (config) => {
+    // Add the plugin if it doesn't exist
+    if (!config.modResults.contents.includes(GOOGLE_SERVICES_PLUGIN)) {
+      config.modResults.contents += `\n${GOOGLE_SERVICES_PLUGIN}\n`;
+    }
+    
+    // Add the configuration if it doesn't exist
+    if (!config.modResults.contents.includes(GOOGLE_SERVICES_CONFIG)) {
+      config.modResults.contents += `${GOOGLE_SERVICES_CONFIG}\n`;
+    }
+    
+    return config;
+  });
+};
 
 const SMALL_ICON_DIRS_TO_SIZE: { [name: string]: number } = {
   'drawable-mdpi': 24,
@@ -19,7 +76,7 @@ const withNotificationIcons: ConfigPlugin<CleverPushPluginProps> = (
   config: ExpoConfig,
   cleverpushProps: CleverPushPluginProps
 ) => {
-  if (!cleverpushProps.smallIcons && !config.notification?.icon) {
+  if (!config.notification?.icon) {
     return config;
   }
 
@@ -29,45 +86,10 @@ const withNotificationIcons: ConfigPlugin<CleverPushPluginProps> = (
       if (config.notification?.icon) {
         await saveIconAsync(config.notification.icon, config.modRequest.projectRoot, SMALL_ICON_DIRS_TO_SIZE);
       }
-
-      if (cleverpushProps.smallIcons) {
-        await saveIconsArrayAsync(config.modRequest.projectRoot, cleverpushProps.smallIcons, SMALL_ICON_DIRS_TO_SIZE);
-      }
       
       return config;
     },
   ]);
-};
-
-const withNotificationColor: ConfigPlugin<CleverPushPluginProps> = (
-  config: ExpoConfig,
-  cleverpushProps: CleverPushPluginProps
-) => {
-  if (!cleverpushProps.smallIconAccentColor) {
-    return config;
-  }
-
-  return withStringsXml(config, (config: any) => {
-    const strings = config.modResults;
-    
-    const stringEntry = {
-      $: { name: 'cleverpush_notification_accent_color' },
-      _: cleverpushProps.smallIconAccentColor!,
-    };
-
-    if (strings.resources.string) {
-      const existingEntry = strings.resources.string.find(
-        (entry: any) => entry.$?.name === 'cleverpush_notification_accent_color'
-      );
-      if (!existingEntry) {
-        strings.resources.string.push(stringEntry);
-      }
-    } else {
-      strings.resources.string = [stringEntry];
-    }
-
-    return config;
-  });
 };
 
 async function saveIconAsync(
@@ -75,41 +97,29 @@ async function saveIconAsync(
   projectRoot: string,
   iconDirToSize: { [name: string]: number }
 ): Promise<void> {
-  await saveIconsArrayAsync(projectRoot, [iconPath], iconDirToSize);
-}
-
-async function saveIconsArrayAsync(
-  projectRoot: string,
-  iconPaths: string[],
-  iconDirToSize: { [name: string]: number }
-): Promise<void> {
   await Promise.all(
-    iconPaths.map(async (iconPath: string) => {
-      await Promise.all(
-        Object.keys(iconDirToSize).map(async (iconDir: string) => {
-          const size = iconDirToSize[iconDir];
-          const dpiFolderPath = resolve(projectRoot, RESOURCE_ROOT_PATH, iconDir);
-          
-          if (!existsSync(dpiFolderPath)) {
-            mkdirSync(dpiFolderPath, { recursive: true });
-          }
+    Object.keys(iconDirToSize).map(async (iconDir: string) => {
+      const size = iconDirToSize[iconDir];
+      const dpiFolderPath = resolve(projectRoot, RESOURCE_ROOT_PATH, iconDir);
+      
+      if (!existsSync(dpiFolderPath)) {
+        mkdirSync(dpiFolderPath, { recursive: true });
+      }
 
-          const iconOutputPath = resolve(dpiFolderPath, 'cleverpush_notification_icon.png');
-          
-          const { source } = await generateImageAsync(
-            { projectRoot, cacheType: 'cleverpush-icon' },
-            {
-              src: iconPath,
-              width: size,
-              height: size,
-              resizeMode: 'cover',
-              backgroundColor: 'transparent',
-            }
-          );
-          
-          writeFileSync(iconOutputPath, source);
-        })
+      const iconOutputPath = resolve(dpiFolderPath, 'cleverpush_notification_icon.png');
+      
+      const { source } = await generateImageAsync(
+        { projectRoot, cacheType: 'cleverpush-icon' },
+        {
+          src: iconPath,
+          width: size,
+          height: size,
+          resizeMode: 'cover',
+          backgroundColor: 'transparent',
+        }
       );
+      
+      writeFileSync(iconOutputPath, source);
     })
   );
 }
@@ -118,9 +128,9 @@ export const withCleverPushAndroid: ConfigPlugin<CleverPushPluginProps> = (
   config: ExpoConfig,
   props: CleverPushPluginProps
 ) => {
+  config = addGoogleServicesClasspathToRootBuildGradle(config);
+  config = addGoogleServicesPluginToAppBuildGradle(config);
   config = withNotificationIcons(config, props);
-  
-  config = withNotificationColor(config, props);
   
   return config;
 }; 
