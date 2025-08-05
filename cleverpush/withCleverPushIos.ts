@@ -126,7 +126,7 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConf
           await FileManager.copyFile(sourcePath, targetFile);
         }
 
-        const sourcePath = props.iosNSEFilePath ?? `${sourceDir}${NSE_SOURCE_FILE}`;
+        const sourcePath = `${sourceDir}${NSE_SOURCE_FILE}`;
         const targetFile = `${iosPath}/${NSE_TARGET_NAME}/${NSE_SOURCE_FILE}`;
         
         CleverPushLog.log(`[CleverPush] Copying NSE source file: ${NSE_SOURCE_FILE}`);
@@ -217,7 +217,6 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config:
         CleverPushLog.log(`[CleverPush] Framework linking handled via Podfile: ${frameworkError}`);
       }
 
-
       CleverPushLog.log(`[CleverPush] Configuring NSE target build settings`);
       const configurations = xcodeProject.pbxXCBuildConfigurationSection();
       for (const key in configurations) {
@@ -226,17 +225,12 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config:
           configurations[key].buildSettings.PRODUCT_NAME == `"${NSE_TARGET_NAME}"`
         ) {
           const buildSettingsObj = configurations[key].buildSettings;
-          buildSettingsObj.DEVELOPMENT_TEAM = props?.devTeam;
-          buildSettingsObj.IPHONEOS_DEPLOYMENT_TARGET = props?.iPhoneDeploymentTarget ?? IPHONEOS_DEPLOYMENT_TARGET;
+          buildSettingsObj.IPHONEOS_DEPLOYMENT_TARGET = IPHONEOS_DEPLOYMENT_TARGET;
           buildSettingsObj.TARGETED_DEVICE_FAMILY = TARGETED_DEVICE_FAMILY;
           buildSettingsObj.CODE_SIGN_ENTITLEMENTS = `${NSE_TARGET_NAME}/${NSE_TARGET_NAME}.entitlements`;
           buildSettingsObj.CODE_SIGN_STYLE = "Automatic";
         }
       }
-
-
-      xcodeProject.addTargetAttribute("DevelopmentTeam", props?.devTeam, nseTarget);
-      xcodeProject.addTargetAttribute("DevelopmentTeam", props?.devTeam);
       
       CleverPushLog.log(`[CleverPush] Xcode project configuration completed successfully`);
     } catch (error) {
