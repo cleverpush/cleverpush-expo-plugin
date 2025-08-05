@@ -174,11 +174,4 @@ dependencies {
     } else {
         implementation jscFlavor
     }
-
-    // Google & Firebase
-    implementation 'com.google.android.gms:play-services-base:17.6.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    api 'com.google.firebase:firebase-messaging:24.0.0'
 }
-apply plugin: 'com.google.gms.google-services'
-googleServices { disableVersionCheck = true }
