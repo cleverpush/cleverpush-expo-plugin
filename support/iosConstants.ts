@@ -1,4 +1,4 @@
-export const DEFAULT_BUNDLE_SHORT_VERSION = "0.0.1";
+export const DEFAULT_BUNDLE_SHORT_VERSION = "0.0.2";
 export const DEFAULT_BUNDLE_VERSION = "1";
 export const IPHONEOS_DEPLOYMENT_TARGET = "13.0";
 

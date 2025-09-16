@@ -1,6 +1,6 @@
 {
   "name": "cleverpush-expo-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Expo config plugin for CleverPush push notifications with automatic NSE setup and rich notification support.",
   "main": "build/app.plugin.js",
   "types": "build/app.plugin.d.ts",
