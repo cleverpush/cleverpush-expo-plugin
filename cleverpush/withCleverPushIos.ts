@@ -17,6 +17,7 @@ import { CleverPushLog } from "../support/CleverPushLog";
 import { FileManager } from "../support/FileManager";
 import CleverPushNseUpdaterManager from "../support/CleverPushNseUpdaterManager";
 import { updatePodfile } from "../support/updatePodfile";
+import getEasManagedCredentialsConfigExtra from "../support/eas/getEasManagedCredentialsConfigExtra";
 import assert from 'assert';
 
 const withAppEnvironment: ConfigPlugin<CleverPushPluginProps> = (
@@ -148,6 +149,12 @@ const withCleverPushNSE: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConf
   ]);
 };
 
+const withEasManagedCredentials: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
+  assert(config.ios?.bundleIdentifier, "Missing 'ios.bundleIdentifier' in app config.")
+  config.extra = getEasManagedCredentialsConfigExtra(config as ExpoConfig);
+  return config;
+}
+
 const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config: ExpoConfig, props: CleverPushPluginProps) => {
   return withXcodeProject(config, (newConfig: any) => {
     try {
@@ -229,7 +236,17 @@ const withCleverPushXcodeProject: ConfigPlugin<CleverPushPluginProps> = (config:
           buildSettingsObj.TARGETED_DEVICE_FAMILY = TARGETED_DEVICE_FAMILY;
           buildSettingsObj.CODE_SIGN_ENTITLEMENTS = `${NSE_TARGET_NAME}/${NSE_TARGET_NAME}.entitlements`;
           buildSettingsObj.CODE_SIGN_STYLE = "Automatic";
+          
+          if (props?.devTeam) {
+            buildSettingsObj.DEVELOPMENT_TEAM = props.devTeam;
+          }
         }
+      }
+      
+  
+      if (props?.devTeam) {
+        xcodeProject.addTargetAttribute("DevelopmentTeam", props.devTeam, nseTarget);
+        xcodeProject.addTargetAttribute("DevelopmentTeam", props.devTeam);
       }
       
       CleverPushLog.log(`[CleverPush] Xcode project configuration completed successfully`);
@@ -256,6 +273,7 @@ export const withCleverPushIos: ConfigPlugin<CleverPushPluginProps> = (
   config = withCleverPushPodfile(config, props);
   config = withCleverPushNSE(config, props);
   config = withCleverPushXcodeProject(config, props);
+  config = withEasManagedCredentials(config, props);
   
   CleverPushLog.log(`[CleverPush] iOS configuration completed successfully`);
   return config;
